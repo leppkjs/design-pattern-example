@@ -1,10 +1,11 @@
-import {Print} from "../case1/Print";
+import {Print} from "./Print";
 import {Banner} from "../case1/Banner";
 
-export class PrintBanner implements Print {
+export class PrintBanner extends Print {
     #banner: Banner;
 
     constructor(text: string) {
+        super();
         this.#banner = new Banner(text);
     }
 

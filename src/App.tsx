@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {BookShelf} from "./service/iterator/BookShelf";
@@ -7,6 +7,7 @@ import {Iterator} from "./service/iterator/Iterator";
 import {PrintBanner} from "./service/adapter/case1/PrintBanner";
 import {PrintBanner as PrintBanner2} from "./service/adapter/case2/PrintBanner";
 import {Print} from "./service/adapter/case1/Print";
+import {Print as Print2} from "./service/adapter/case2/Print";
 
 function App(): React.ReactNode {
     const runIterator = () => {
@@ -31,7 +32,7 @@ function App(): React.ReactNode {
         print.printWeak();
         print.printStrong();
 
-        const print2: Print = new PrintBanner2('Hello');
+        const print2: Print2 = new PrintBanner2('Hello');
         console.log('Case2.');
         print2.printWeak();
         print2.printStrong();
@@ -40,7 +41,7 @@ function App(): React.ReactNode {
     return (
         <div className="App">
             <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
+                <img src={logo} className="App-logo" alt="logo"/>
                 <h1>Design pattern Example</h1>
 
                 <h2>Iterator</h2>
