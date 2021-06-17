@@ -4,6 +4,9 @@ import './App.css';
 import {BookShelf} from "./service/iterator/BookShelf";
 import {Book} from "./service/iterator/Book";
 import {Iterator} from "./service/iterator/Iterator";
+import {PrintBanner} from "./service/adapter/case1/PrintBanner";
+import {PrintBanner as PrintBanner2} from "./service/adapter/case2/PrintBanner";
+import {Print} from "./service/adapter/case1/Print";
 
 function App(): React.ReactNode {
     const runIterator = () => {
@@ -23,29 +26,32 @@ function App(): React.ReactNode {
     }
 
     const runAdapter = () => {
-        alert(1);
+        const print: Print = new PrintBanner('Hello');
+        console.log('Case1.');
+        print.printWeak();
+        print.printStrong();
+
+        const print2: Print = new PrintBanner2('Hello');
+        console.log('Case2.');
+        print2.printWeak();
+        print2.printStrong();
     }
 
     return (
         <div className="App">
             <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
-                <p>Design pattern Example</p>
+                <h1>Design pattern Example</h1>
 
                 <h2>Iterator</h2>
                 <p>
-                    <button type="button" onClick={runIterator}>
-                        Run
-                    </button>
+                    <button type="button" onClick={runIterator}>Run</button>
                 </p>
 
                 <h2>Adapter</h2>
                 <p>
-                    <button type="button" onClick={runAdapter}>
-                        Run
-                    </button>
+                    <button type="button" onClick={runAdapter}>Run</button>
                 </p>
-
             </header>
         </div>
     );
