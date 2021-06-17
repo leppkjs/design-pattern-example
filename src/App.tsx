@@ -1,32 +1,51 @@
 import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {BookShelf} from "./service/iterator/BookShelf";
+import {Book} from "./service/iterator/Book";
+import {Iterator} from "./service/iterator/Iterator";
 
 function App(): React.ReactNode {
-    const [count, setCount] = useState(0);
+    const runIterator = () => {
+        const bookShelf: BookShelf = new BookShelf(4);
+
+        bookShelf.appendBook(new Book('책 1'));
+        bookShelf.appendBook(new Book('책 2'));
+        bookShelf.appendBook(new Book('책 3'));
+        bookShelf.appendBook(new Book('책 4'));
+
+        const it: Iterator = bookShelf.iterator();
+
+        while (it.hasNext()) {
+            const book: Book = it.next() as Book;
+            console.log(book.name);
+        }
+    }
+
+    const runAdapter = () => {
+        alert(1);
+    }
 
     return (
         <div className="App">
             <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
-                <p>Hello Vite + React!</p>
+                <p>Design pattern Example</p>
+
+                <h2>Iterator</h2>
                 <p>
-                    <button type="button" onClick={() => setCount((count) => count + 1)}>
-                        count is: {count}
+                    <button type="button" onClick={runIterator}>
+                        Run
                     </button>
                 </p>
+
+                <h2>Adapter</h2>
                 <p>
-                    Edit <code>App.tsx</code> and save to test HMR updates.
+                    <button type="button" onClick={runAdapter}>
+                        Run
+                    </button>
                 </p>
-                <p>
-                    <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-                        Learn React
-                    </a>
-                    {' | '}
-                    <a className="App-link" href="https://vitejs.dev/guide/features.html" target="_blank" rel="noopener noreferrer">
-                        Vite Docs
-                    </a>
-                </p>
+
             </header>
         </div>
     );
